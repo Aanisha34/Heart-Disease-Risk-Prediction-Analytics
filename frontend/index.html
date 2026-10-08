@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction & Visual Analytics</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>❤️ Heart Disease Risk Prediction & Analytics</h1>
+            <p>AIML Interactive Dashboard</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Left Panel: Input Form -->
+            <div class="card form-card">
+                <h2>Patient Clinical Details</h2>
+                <form id="predictionForm">
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label>Age (years)</label>
+                            <input type="number" id="age" value="52" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Sex</label>
+                            <select id="sex">
+                                <option value="1">Male</option>
+                                <option value="0">Female</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Chest Pain Type (cp: 0-3)</label>
+                            <input type="number" id="cp" value="0" min="0" max="3" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Resting Blood Pressure (trestbps)</label>
+                            <input type="number" id="trestbps" value="125" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Serum Cholesterol (chol in mg/dl)</label>
+                            <input type="number" id="chol" value="212" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Fasting Blood Sugar > 120 mg/dl (fbs)</label>
+                            <select id="fbs">
+                                <option value="0">False (0)</option>
+                                <option value="1">True (1)</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Resting ECG (restecg: 0-2)</label>
+                            <input type="number" id="restecg" value="1" min="0" max="2" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Max Heart Rate Achieved (thalach)</label>
+                            <input type="number" id="thalach" value="168" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Exercise Induced Angina (exang)</label>
+                            <select id="exang">
+                                <option value="0">No (0)</option>
+                                <option value="1">Yes (1)</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>ST Depression (oldpeak)</label>
+                            <input type="number" step="0.1" id="oldpeak" value="1.0" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Slope of Peak Exercise ST (slope: 0-2)</label>
+                            <input type="number" id="slope" value="2" min="0" max="2" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Major Vessels (ca: 0-4)</label>
+                            <input type="number" id="ca" value="2" min="0" max="4" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn">Predict Risk</button>
+                </form>
+
+                <div id="resultBox" class="result-box hidden">
+                    <h3 id="resultText">Prediction Result</h3>
+                    <p id="riskScore">Risk Probability: 0%</p>
+                </div>
+            </div>
+
+            <!-- Right Panel: Dataset Dashboard Visuals -->
+            <div class="card dashboard-card">
+                <h2>Dataset Analytics Dashboard</h2>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <span class="stat-label">Total Records</span>
+                        <span class="stat-value" id="totalRecords">-</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">Average Age</span>
+                        <span class="stat-value" id="avgAge">-</span>
+                    </div>
+                </div>
+
+                <div class="charts-container">
+                    <div class="chart-box">
+                        <h3>Heart Disease Case Distribution</h3>
+                        <canvas id="targetChart"></canvas>
+                    </div>
+                    <div class="chart-box">
+                        <h3>Age Group Distribution</h3>
+                        <canvas id="ageChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
