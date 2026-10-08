@@ -24,7 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await fetch('https://heart-disease-risk-prediction-analytics.onrender.com/predict', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Content-Type': 'application/json'
+                 },
                 body: JSON.stringify(formData)
             });
 
@@ -44,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
             riskScore.innerText = `Risk Percentage: ${data.risk_percentage}%`;
 
         } catch (error) {
-            alert('Error connecting to Backend Server. Please make sure app.py is running on port 5000.');
+            alert("Error connecting to Backend Server. Please try again after 30 seconds.");
         }
     });
 });
