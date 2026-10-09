@@ -1,4 +1,4 @@
-const API_BASE = 'https://heart-disease-risk-prediction-analytics.onrender.com';
+const BASE_URL = 'https://heart-disease-risk-prediction-analytics.onrender.com';
 
 document.addEventListener('DOMContentLoaded', () => {
     loadAnalytics();
@@ -18,11 +18,12 @@ document.addEventListener('DOMContentLoaded', () => {
             exang: document.getElementById('exang').value,
             oldpeak: document.getElementById('oldpeak').value,
             slope: document.getElementById('slope').value,
-            ca: document.getElementById('ca').value
+            ca: document.getElementById('ca').value,
+            thal: document.getElementById('thal') ? document.getElementById('thal').value : 3
         };
 
         try {
-            const response = await fetch('https://heart-disease-risk-prediction-analytics.onrender.com/predict', {
+            const response = await fetch(`${BASE_URL}/api/predict`, {
                 method: 'POST',
                 headers: { 
                     'Content-Type': 'application/json'
@@ -53,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function loadAnalytics() {
     try {
-        const res = await fetch(`${API_BASE}/analytics`);
+        const res = await fetch(`${BASE_URL}/api/analytics`);
         const data = await res.json();
 
         document.getElementById('totalRecords').innerText = data.total_records || '-';
